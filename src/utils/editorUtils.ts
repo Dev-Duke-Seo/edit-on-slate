@@ -76,7 +76,7 @@ export const toggleFontFamily = (editor: CustomEditor, fontFamily: string) => {
 };
 
 // 텍스트 정렬 함수
-export const toggleTextAlign = (editor: CustomEditor, align: 'left' | 'center' | 'right' | 'justify') => {
+export const toggleTextAlign = (editor: CustomEditor, align: 'center' | 'right' | 'justify') => {
   const { selection } = editor;
   if (!selection) return;
 
@@ -90,7 +90,7 @@ export const toggleTextAlign = (editor: CustomEditor, align: 'left' | 'center' |
 };
 
 // 텍스트 정렬 활성화 여부 확인 함수
-export const isTextAlignActive = (editor: CustomEditor, align: 'left' | 'center' | 'right' | 'justify') => {
+export const isTextAlignActive = (editor: CustomEditor, align: 'center' | 'right' | 'justify') => {
   const { selection } = editor;
   if (!selection) return false;
 

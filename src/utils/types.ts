@@ -17,7 +17,7 @@ export type CustomText = {
 export type CustomElement = {
   type: 'paragraph' | 'heading-one' | 'heading-two' | 'heading-three' | 'block-quote' | 'bulleted-list' | 'numbered-list' | 'list-item';
   children: (CustomElement | CustomText)[];
-  textAlign?: 'left' | 'center' | 'right' | 'justify';
+  textAlign?: 'center' | 'right' | 'justify';
 };
 
 // 에디터 타입 정의
