@@ -177,7 +177,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({ editor }) => {
   };
   
   // 텍스트 정렬 핸들러
-  const handleTextAlignToggle = (align: 'left' | 'center' | 'right' | 'justify') => {
+  const handleTextAlignToggle = (align: 'center' | 'right' | 'justify') => {
     toggleTextAlign(editor, align);
   };
   
@@ -198,7 +198,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({ editor }) => {
       {/* 서체 선택 */}
       <FontSelect onChange={handleFontFamilyChange}>
         <option value="Pretendard">Pretendard</option>
-        <option value="NanumSquareNeo">NanumSquareNeo</option>
+        <option value="Nanum Gothic">Nanum Gothic</option>
         <option value="sans-serif">Sans-serif</option>
         <option value="serif">Serif</option>
         <option value="monospace">Monospace</option>
@@ -316,16 +316,6 @@ export const Toolbar: React.FC<ToolbarProps> = ({ editor }) => {
       <ToolbarDivider />
       
       {/* 텍스트 정렬 버튼 */}
-      <ToolbarButton
-        active={false}
-        onMouseDown={(e) => {
-          e.preventDefault();
-          handleTextAlignToggle('left');
-        }}
-        title="왼쪽 정렬"
-      >
-        ←
-      </ToolbarButton>
       <ToolbarButton
         active={false}
         onMouseDown={(e) => {

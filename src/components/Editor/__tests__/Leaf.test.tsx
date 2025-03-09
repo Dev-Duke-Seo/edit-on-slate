@@ -168,7 +168,7 @@ describe("Leaf 컴포넌트", () => {
 			...baseProps,
 			leaf: {
 				...baseProps.leaf,
-				fontFamily: "NanumSquareNeo",
+				fontFamily: "Nanum Gothic",
 				color: "#0000FF",
 			},
 		};
@@ -179,7 +179,7 @@ describe("Leaf 컴포넌트", () => {
 		expect(text).toBeInTheDocument();
 
 		const leafElement = screen.getByText("테스트 텍스트");
-		expect(leafElement).toHaveStyle({ fontFamily: "NanumSquareNeo" });
+		expect(leafElement).toHaveStyle({ fontFamily: "Nanum Gothic" });
 		expect(leafElement).toHaveStyle({ color: "#0000FF" });
 	});
 });

@@ -197,10 +197,10 @@ describe('Toolbar 컴포넌트', () => {
     render(<Toolbar editor={editor} />);
     
     // 서체 선택
-    fireEvent.change(screen.getByRole('combobox'), { target: { value: 'NanumSquareNeo' } });
+    fireEvent.change(screen.getByRole('combobox'), { target: { value: 'Nanum Gothic' } });
     
     // toggleFontFamily 함수가 호출되었는지 확인
-    expect(toggleFontFamily).toHaveBeenCalledWith(editor, 'NanumSquareNeo');
+    expect(toggleFontFamily).toHaveBeenCalledWith(editor, 'Nanum Gothic');
   });
   
   test('왼쪽 정렬 버튼 클릭', () => {
