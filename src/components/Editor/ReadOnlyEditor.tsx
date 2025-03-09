@@ -29,9 +29,15 @@ const EditorContainer = styled.div<{
 const EditableContainer = styled.div<{
   padding?: string;
   minHeight?: string;
+  maxHeight?: string;
+  fontSize?: string;
+  overflow?: string;
 }>`
   padding: ${props => props.padding || '20px'};
   min-height: ${props => props.minHeight || 'auto'};
+  max-height: ${props => props.maxHeight || 'none'};
+  font-size: ${props => props.fontSize || '16px'};
+  overflow: ${props => props.overflow || 'auto'};
 `;
 
 // 읽기 전용 에디터 컴포넌트 Props 타입
@@ -42,10 +48,13 @@ export interface ReadOnlyEditorProps {
   width?: string;
   maxWidth?: string;
   minHeight?: string;
+  maxHeight?: string;
   backgroundColor?: string;
   padding?: string;
   className?: string;
   style?: React.CSSProperties;
+  fontSize?: string;
+  overflow?: string;
 }
 
 // 읽기 전용 에디터 컴포넌트
@@ -56,10 +65,13 @@ export const ReadOnlyEditor: React.FC<ReadOnlyEditorProps> = ({
   width,
   maxWidth,
   minHeight,
+  maxHeight,
   backgroundColor,
   padding,
   className,
+  fontSize,
   style,
+  overflow,
 }) => {
   // 에디터 초기화
   const editor = useMemo(() => {
@@ -83,7 +95,13 @@ export const ReadOnlyEditor: React.FC<ReadOnlyEditorProps> = ({
       backgroundColor={backgroundColor}
     >
       <Slate editor={editor} initialValue={value} onChange={() => {}}>
-        <EditableContainer padding={padding} minHeight={minHeight}>
+        <EditableContainer 
+          padding={padding} 
+          minHeight={minHeight} 
+          maxHeight={maxHeight}
+          fontSize={fontSize}
+          overflow={overflow}
+        >
           <Editable
             renderElement={renderElement}
             renderLeaf={renderLeaf}
