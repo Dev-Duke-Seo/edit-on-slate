@@ -38,6 +38,18 @@ const EditableContainer = styled.div<{
   max-height: ${props => props.maxHeight || 'none'};
   font-size: ${props => props.fontSize || '16px'};
   overflow: ${props => props.overflow || 'auto'};
+  
+  &::-webkit-scrollbar {
+    width: 1rem; /* 스크롤바의 너비 */
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    border-radius: 0.5rem; /* 스크롤바 모서리 둥글게 */
+  }
+  
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555; /* 스크롤바 호버 시 색상 */
+  }
 `;
 
 // 읽기 전용 에디터 컴포넌트 Props 타입
