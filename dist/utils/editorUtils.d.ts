@@ -1,0 +1,10 @@
+import { Text } from 'slate';
+import { CustomEditor, CustomElement } from './types';
+export declare const toggleMark: (editor: CustomEditor, format: keyof Omit<Text, 'text'>) => void;
+export declare const isMarkActive: (editor: CustomEditor, format: keyof Omit<Text, 'text'>) => boolean;
+export declare const toggleBlock: (editor: CustomEditor, format: CustomElement['type']) => void;
+export declare const isBlockActive: (editor: CustomEditor, format: CustomElement['type']) => boolean;
+export declare const toggleFontFamily: (editor: CustomEditor, fontFamily: string) => void;
+export declare const toggleTextAlign: (editor: CustomEditor, align: 'center' | 'right' | 'justify') => void;
+export declare const isTextAlignActive: (editor: CustomEditor, align: 'center' | 'right' | 'justify') => boolean;
+export declare const toggleFontColor: (editor: CustomEditor, color: string) => void;

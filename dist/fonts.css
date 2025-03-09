@@ -1,0 +1,98 @@
+/* 
+ * 폰트 로딩 최적화 방법
+ * 1. CDN을 통해 폰트를 로드합니다.
+ * 2. font-display: swap을 사용하여 폰트가 로드되는 동안 시스템 폰트를 표시합니다.
+ * 3. 적절한 폴백 폰트를 설정하여 레이아웃 이동을 최소화합니다.
+ */
+
+/* Nanum Gothic 폰트 - CDN 버전 */
+@font-face {
+	font-family: "Nanum Gothic";
+	font-style: normal;
+	font-weight: 400;
+	src: url("https://fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Regular.eot");
+	src: url("https://fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Regular.eot?#iefix")
+			format("embedded-opentype"),
+		url("https://fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Regular.woff2")
+			format("woff2"),
+		url("https://fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Regular.woff")
+			format("woff"),
+		url("https://fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Regular.ttf")
+			format("truetype");
+	font-display: swap;
+}
+@font-face {
+	font-family: "Nanum Gothic";
+	font-style: normal;
+	font-weight: 700;
+	src: url("https://fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Bold.eot");
+	src: url("https://fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Bold.eot?#iefix")
+			format("embedded-opentype"),
+		url("https://fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Bold.woff2")
+			format("woff2"),
+		url("https://fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Bold.woff")
+			format("woff"),
+		url("https://fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Bold.ttf")
+			format("truetype");
+	font-display: swap;
+}
+@font-face {
+	font-family: "Nanum Gothic";
+	font-style: normal;
+	font-weight: 800;
+	src: url("https://fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-ExtraBold.eot");
+	src: url("https://fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-ExtraBold.eot?#iefix")
+			format("embedded-opentype"),
+		url("https://fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-ExtraBold.woff2")
+			format("woff2"),
+		url("https://fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-ExtraBold.woff")
+			format("woff"),
+		url("https://fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-ExtraBold.ttf")
+			format("truetype");
+	font-display: swap;
+}
+
+/* Pretendard 폰트 - CDN 버전 */
+@font-face {
+	font-family: "Pretendard";
+	font-weight: 400;
+	src: url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/woff2/Pretendard-Regular.woff2")
+			format("woff2"),
+		url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/woff/Pretendard-Regular.woff")
+			format("woff");
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Pretendard";
+	font-weight: 600;
+	src: url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/woff2/Pretendard-SemiBold.woff2")
+			format("woff2"),
+		url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/woff/Pretendard-SemiBold.woff")
+			format("woff");
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Pretendard";
+	font-weight: 700;
+	src: url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/woff2/Pretendard-Bold.woff2")
+			format("woff2"),
+		url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/woff/Pretendard-Bold.woff")
+			format("woff");
+	font-display: swap;
+}
+
+/* 폰트 로딩 실패 시 대체할 시스템 폰트 설정 */
+:root {
+	--font-family-sans: "Nanum Gothic", "Pretendard", -apple-system,
+		BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕",
+		sans-serif;
+	--font-family-serif: "Noto Serif KR", Georgia, "Times New Roman", serif;
+	--font-family-mono: "JetBrains Mono", "D2Coding", Consolas, monospace;
+}
+
+/* 폰트 적용 */
+body {
+	font-family: var(--font-family-sans);
+}
