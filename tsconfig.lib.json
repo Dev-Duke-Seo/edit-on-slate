@@ -1,0 +1,31 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "outDir": "dist",
+        "declaration": true,
+        "declarationDir": "dist",
+        "sourceMap": true,
+        "noEmit": false,
+        "jsx": "react",
+        "rootDir": "src",
+        "baseUrl": "src",
+        "paths": {
+            "@": [
+                "*"
+            ]
+        }
+    },
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "build",
+        "dist",
+        "src/**/*.test.tsx",
+        "src/**/*.test.ts",
+        "src/**/*.stories.tsx",
+        "src/App.tsx",
+        "src/dev.tsx"
+    ]
+}

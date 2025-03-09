@@ -1,0 +1,81 @@
+/* NanumSquareNeo 폰트 */
+@font-face {
+	font-family: "NanumSquareNeo";
+	font-weight: 300;
+	src: url("./assets/fonts/NanumSquareNeo/woff2/NanumSquareNeoTTF-aLt.woff2")
+			format("woff2"),
+		url("./assets/fonts/NanumSquareNeo/woff/NanumSquareNeoTTF-aLt.woff")
+			format("woff");
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "NanumSquareNeo";
+	font-weight: 400;
+	src: url("./assets/fonts/NanumSquareNeo/woff2/NanumSquareNeoTTF-bRg.woff2")
+			format("woff2"),
+		url("./assets/fonts/NanumSquareNeo/woff/NanumSquareNeoTTF-bRg.woff")
+			format("woff");
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "NanumSquareNeo";
+	font-weight: 700;
+	src: url("./assets/fonts/NanumSquareNeo/woff2/NanumSquareNeoTTF-cBd.woff2")
+			format("woff2"),
+		url("./assets/fonts/NanumSquareNeo/woff/NanumSquareNeoTTF-cBd.woff")
+			format("woff");
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "NanumSquareNeo";
+	font-weight: 800;
+	src: url("./assets/fonts/NanumSquareNeo/woff2/NanumSquareNeoTTF-dEb.woff2")
+			format("woff2"),
+		url("./assets/fonts/NanumSquareNeo/woff/NanumSquareNeoTTF-dEb.woff")
+			format("woff");
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "NanumSquareNeo";
+	font-weight: 900;
+	src: url("./assets/fonts/NanumSquareNeo/woff2/NanumSquareNeoTTF-eHv.woff2")
+			format("woff2"),
+		url("./assets/fonts/NanumSquareNeo/woff/NanumSquareNeoTTF-eHv.woff")
+			format("woff");
+	font-display: swap;
+}
+
+/* Pretendard 폰트 */
+@font-face {
+	font-family: "Pretendard";
+	font-weight: 400;
+	src: url("./assets/fonts/pretendard/woff2-subset/Pretendard-Regular.subset.woff2")
+			format("woff2"),
+		url("./assets/fonts/pretendard/woff-subset/Pretendard-Regular.subset.woff")
+			format("woff");
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Pretendard";
+	font-weight: 600;
+	src: url("./assets/fonts/pretendard/woff2-subset/Pretendard-SemiBold.subset.woff2")
+			format("woff2"),
+		url("./assets/fonts/pretendard/woff-subset/Pretendard-SemiBold.subset.woff")
+			format("woff");
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Pretendard";
+	font-weight: 700;
+	src: url("./assets/fonts/pretendard/woff2-subset/Pretendard-Bold.subset.woff2")
+			format("woff2"),
+		url("./assets/fonts/pretendard/woff-subset/Pretendard-Bold.subset.woff")
+			format("woff");
+	font-display: swap;
+}

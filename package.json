@@ -1,8 +1,35 @@
 {
-  "name": "editor-library",
-  "version": "0.1.0",
-  "private": true,
+  "name": "edit-on-slate",
+  "version": "1.0.0",
+  "private": false,
+  "description": "Slate 기반의 직관적이고 강력한 리액트 텍스트 에디터 라이브러리",
+  "author": "Duke",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Dev-Duke-Seo/edit-on-slate.git"
+  },
+  "homepage": "https://github.com/Dev-Duke-Seo/edit-on-slate",
+  "bugs": {
+    "url": "https://github.com/Dev-Duke-Seo/edit-on-slate/issues"
+  },
   "dependencies": {
+    "@emotion/styled": "^11.14.0",
+    "slate": "^0.112.0",
+    "slate-history": "^0.110.3",
+    "slate-react": "^0.112.1"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "devDependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
@@ -15,13 +42,20 @@
     "react-dom": "^19.0.0",
     "react-scripts": "5.0.1",
     "typescript": "^4.9.5",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "rollup": "^2.79.1",
+    "rollup-plugin-typescript2": "^0.31.2",
+    "@rollup/plugin-commonjs": "^22.0.2",
+    "@rollup/plugin-node-resolve": "^14.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "BROWSER=none react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build:lib": "rollup -c",
+    "prepublishOnly": "npm run build:lib",
+    "publish:npm": "npm run build:lib && npm publish"
   },
   "eslintConfig": {
     "extends": [
@@ -40,5 +74,16 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "keywords": [
+    "react",
+    "editor",
+    "wysiwyg",
+    "rich-text",
+    "slate",
+    "text-editor",
+    "slate-canvas",
+    "markdown",
+    "content-editing"
+  ]
 }
