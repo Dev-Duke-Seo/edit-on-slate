@@ -47,7 +47,72 @@ const MyEditor = () => {
 export default MyEditor;
 ```
 
-### Props
+### 폰트 사용 방법
+
+이 라이브러리는 기본적으로 CDN을 통해 웹 폰트(Nanum Gothic, Pretendard)를 로드합니다. 빌드에 폰트 파일을 포함하지 않고 다음과 같은 방법으로 폰트를 사용할 수 있습니다:
+
+#### 1. 기본 제공 폰트 사용하기
+
+라이브러리를 import하면 자동으로 CDN을 통해 폰트가 로드됩니다. 별도의 설정이 필요하지 않습니다.
+
+```tsx
+import { Editor } from "edit-on-slate";
+// 폰트 스타일시트가 자동으로 로드됩니다
+```
+
+#### 2. 커스텀 폰트 사용하기
+
+자신만의 폰트를 사용하려면 CSS 변수를 재정의하세요:
+
+```css
+:root {
+  --font-family-sans: "나눔고딕", "맑은 고딕", sans-serif;
+  --font-family-serif: "나눔명조", serif;
+  --font-family-mono: "D2Coding", monospace;
+}
+```
+
+#### 3. CDN 폰트 직접 로드하기
+
+라이브러리의 폰트 로딩을 비활성화하고 직접 폰트를 로드하려면:
+
+```html
+<!-- HTML의 head 섹션에 추가 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+```
+
+#### 4. 폰트 로딩 유틸리티 사용하기
+
+라이브러리에서 제공하는 폰트 로딩 유틸리티를 사용하여 폰트 로딩을 최적화할 수 있습니다:
+
+```tsx
+import { loadFontStylesheet, waitForFont, isFontLoaded } from "edit-on-slate";
+
+// 최적화된 방식으로 폰트 스타일시트 로드
+loadFontStylesheet('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+
+// 폰트가 로드되었는지 확인
+const isLoaded = isFontLoaded('Noto Sans KR');
+console.log('폰트 로드 여부:', isLoaded);
+
+// 폰트가 로드될 때까지 기다리기
+waitForFont('Noto Sans KR').then(loaded => {
+  if (loaded) {
+    console.log('폰트가 성공적으로 로드되었습니다!');
+  } else {
+    console.log('폰트 로딩 타임아웃');
+  }
+});
+
+// 기본 폰트 로드 (Nanum Gothic, Pretendard)
+import { loadDefaultFonts } from "edit-on-slate";
+loadDefaultFonts();
+```
+
+## Props
 
 | 속성        | 타입                          | 기본값                 | 설명                                   |
 | ----------- | ----------------------------- | ---------------------- | -------------------------------------- |
