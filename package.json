@@ -1,85 +1,111 @@
 {
-  "name": "edit-on-slate",
-  "version": "1.0.1",
-  "private": false,
-  "description": "Slate 기반의 직관적이고 강력한 리액트 텍스트 에디터 라이브러리",
-  "author": "Duke",
-  "license": "MIT",
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Dev-Duke-Seo/edit-on-slate.git"
-  },
-  "homepage": "https://github.com/Dev-Duke-Seo/edit-on-slate",
-  "bugs": {
-    "url": "https://github.com/Dev-Duke-Seo/edit-on-slate/issues"
-  },
-  "dependencies": {
-    "@emotion/styled": "^11.14.0",
-    "slate": "^0.112.0",
-    "slate-history": "^0.110.3",
-    "slate-react": "^0.112.1"
-  },
-  "peerDependencies": {
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0"
-  },
-  "devDependencies": {
-    "@rollup/plugin-typescript": "^12.1.2",
-    "@testing-library/dom": "^10.4.0",
-    "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.2.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.126",
-    "@types/react": "^19.0.10",
-    "@types/react-dom": "^19.0.4",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-scripts": "5.0.1",
-    "tslib": "^2.8.1",
-    "typescript": "^5.8.2",
-    "web-vitals": "^2.1.4"
-  },
-  "scripts": {
-    "start": "BROWSER=none react-scripts start",
-    "build": "rollup -c",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "build:lib": "rollup -c"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "keywords": [
-    "react",
-    "editor",
-    "wysiwyg",
-    "rich-text",
-    "slate",
-    "text-editor",
-    "slate-canvas",
-    "markdown",
-    "content-editing"
-  ]
+	"name": "edit-on-slate",
+	"version": "1.1.0",
+	"private": false,
+	"description": "Slate 기반의 직관적이고 강력한 리액트 텍스트 에디터 라이브러리",
+	"author": "Duke",
+	"license": "MIT",
+	"main": "dist/index.js",
+	"module": "dist/index.esm.js",
+	"types": "dist/lib/index.d.ts",
+	"source": "src/lib/index.ts",
+	"files": [
+		"dist",
+		"src/components",
+		"src/utils",
+		"src/plugins",
+		"src/lib",
+		"src/assets"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Dev-Duke-Seo/edit-on-slate.git"
+	},
+	"homepage": "https://github.com/Dev-Duke-Seo/edit-on-slate",
+	"bugs": {
+		"url": "https://github.com/Dev-Duke-Seo/edit-on-slate/issues"
+	},
+	"dependencies": {
+		"@emotion/react": "^11.14.0",
+		"@emotion/styled": "^11.14.0",
+		"ajv": "^8.17.1",
+		"slate": "^0.112.0",
+		"slate-dom": "^0.112.2",
+		"slate-history": "^0.110.3",
+		"slate-react": "^0.112.1"
+	},
+	"peerDependencies": {
+		"react": ">=16.8.0",
+		"react-dom": ">=16.8.0"
+	},
+	"bundledDependencies": [
+		"slate",
+		"slate-history",
+		"slate-react"
+	],
+	"devDependencies": {
+		"@rollup/plugin-commonjs": "^28.0.3",
+		"@rollup/plugin-image": "^3.0.3",
+		"@rollup/plugin-node-resolve": "^16.0.0",
+		"@rollup/plugin-typescript": "^12.1.2",
+		"@testing-library/dom": "^10.4.0",
+		"@testing-library/jest-dom": "^6.6.3",
+		"@testing-library/react": "^16.2.0",
+		"@testing-library/user-event": "^13.5.0",
+		"@types/jest": "^27.5.2",
+		"@types/node": "^16.18.126",
+		"@types/react": "^19.0.10",
+		"@types/react-dom": "^19.0.4",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0",
+		"react-scripts": "5.0.1",
+		"rollup-plugin-copy": "^3.5.0",
+		"rollup-plugin-dts": "^6.1.1",
+		"rollup-plugin-peer-deps-external": "^2.2.4",
+		"rollup-plugin-postcss": "^4.0.2",
+		"tslib": "^2.8.1",
+		"typescript": "^4.9.5",
+		"web-vitals": "^2.1.4"
+	},
+	"scripts": {
+		"start": "BROWSER=none react-scripts start",
+		"build": "rollup -c",
+		"test": "react-scripts test",
+		"eject": "react-scripts eject",
+		"build:lib": "rollup -c"
+	},
+	"eslintConfig": {
+		"extends": [
+			"react-app",
+			"react-app/jest"
+		]
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	},
+	"keywords": [
+		"react",
+		"editor",
+		"wysiwyg",
+		"rich-text",
+		"slate",
+		"text-editor",
+		"slate-canvas",
+		"markdown",
+		"content-editing"
+	],
+	"bundleDependencies": [
+		"slate",
+		"slate-history",
+		"slate-react"
+	]
 }
