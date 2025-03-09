@@ -5,6 +5,8 @@ import '../fonts.css';
 export { Editor } from '../components/Editor';
 export type { EditorProps } from '../components/Editor';
 export { Toolbar } from '../components/Editor/Toolbar';
+export { ReadOnlyEditor } from '../components/Editor/ReadOnlyEditor';
+export type { ReadOnlyEditorProps } from '../components/Editor/ReadOnlyEditor';
 
 // 유틸리티 함수 내보내기
 export { toggleMark, isMarkActive, toggleBlock, isBlockActive } from '../utils/editorUtils';
