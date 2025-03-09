@@ -15,9 +15,9 @@ Slate 기반의 리액트 텍스트 에디터 라이브러리입니다.
 ## 설치
 
 ```bash
-npm install slate-canvas
+npm install edit-on-slate
 # 또는
-yarn add slate-canvas
+yarn add edit-on-slate
 ```
 
 ## 사용법
@@ -26,7 +26,7 @@ yarn add slate-canvas
 
 ```tsx
 import React, { useState } from "react";
-import { Editor } from "slate-canvas";
+import { Editor } from "edit-on-slate";
 import { Descendant } from "slate";
 
 const MyEditor = () => {
@@ -75,7 +75,7 @@ export default MyEditor;
 
 ## 배포하기
 
-SlateCanvas를 npm에 배포하려면 다음 단계를 따르세요:
+Edit-On-Slate를 npm에 배포하려면 다음 단계를 따르세요:
 
 1. 버전 업데이트:
 ```bash
