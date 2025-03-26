@@ -71,4 +71,6 @@ export const Leaf = ({ attributes, children, leaf }: RenderLeafProps) => {
       {children}
     </StyledSpan>
   );
-}; 
+};
+
+export const renderLeaf = (props: RenderLeafProps) => <Leaf {...props} />; 

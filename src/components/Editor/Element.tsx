@@ -62,7 +62,8 @@ const StyledLi = styled.li<{ textAlign?: string }>`
 `;
 
 // 요소 렌더링 컴포넌트
-export const Element = ({ attributes, children, element }: RenderElementProps) => {
+export const Element = (props: RenderElementProps) => {
+  const { attributes, children, element } = props;
   const customElement = element as CustomElement;
   const textAlign = customElement.textAlign;
   
@@ -86,4 +87,6 @@ export const Element = ({ attributes, children, element }: RenderElementProps) =
     default:
       return <StyledParagraph textAlign={textAlign} {...attributes}>{children}</StyledParagraph>;
   }
-}; 
+};
+
+export const renderElement = (props: RenderElementProps) => <Element {...props} />; 

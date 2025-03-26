@@ -1,6 +1,6 @@
 {
 	"name": "edit-on-slate",
-	"version": "1.1.3",
+	"version": "1.2.0",
 	"private": false,
 	"description": "Slate 기반의 직관적이고 강력한 리액트 텍스트 에디터 라이브러리",
 	"author": "Duke",

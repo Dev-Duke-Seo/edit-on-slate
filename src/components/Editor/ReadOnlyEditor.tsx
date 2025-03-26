@@ -1,127 +1,36 @@
 import React, { useMemo } from 'react';
-import { createEditor, Descendant } from 'slate';
-import { Slate, Editable, withReact, RenderElementProps, RenderLeafProps } from 'slate-react';
-import { withHistory } from 'slate-history';
-import styled from '@emotion/styled';
-import { Element } from './Element';
-import { Leaf } from './Leaf';
-import { withShortcuts } from '../../plugins/withShortcuts';
+import { createEditor } from 'slate';
+import { withReact, Slate, Editable } from 'slate-react';
+import { renderElement } from './Element';
+import { renderLeaf } from './Leaf';
+import { Descendant } from 'slate';
 
-// 스타일 컴포넌트 정의
-const EditorContainer = styled.div<{
-  noBorder?: boolean;
-  noShadow?: boolean;
-  width?: string;
-  maxWidth?: string;
-  minHeight?: string;
-  backgroundColor?: string;
-  padding?: string;
-}>`
-  border: ${props => props.noBorder ? 'none' : '1px solid #ddd'};
-  border-radius: 4px;
-  box-shadow: ${props => props.noShadow ? 'none' : '0 1px 3px rgba(0, 0, 0, 0.1)'};
-  background-color: ${props => props.backgroundColor || 'white'};
-  width: ${props => props.width || 'auto'};
-  max-width: ${props => props.maxWidth || '800px'};
-  margin: 0 auto;
-`;
-
-const EditableContainer = styled.div<{
-  padding?: string;
-  minHeight?: string;
-  maxHeight?: string;
-  fontSize?: string;
-  overflow?: string;
-}>`
-  padding: ${props => props.padding || '20px'};
-  min-height: ${props => props.minHeight || 'auto'};
-  max-height: ${props => props.maxHeight || 'none'};
-  font-size: ${props => props.fontSize || '16px'};
-  overflow: ${props => props.overflow || 'auto'};
-  
-  &::-webkit-scrollbar {
-    width: 1rem; /* 스크롤바의 너비 */
-  }
-  
-  &::-webkit-scrollbar-thumb {
-    border-radius: 0.5rem; /* 스크롤바 모서리 둥글게 */
-  }
-  
-  &::-webkit-scrollbar-thumb:hover {
-    background: #555; /* 스크롤바 호버 시 색상 */
-  }
-`;
-
-// 읽기 전용 에디터 컴포넌트 Props 타입
-export interface ReadOnlyEditorProps {
+interface ReadOnlyEditorProps {
   value: Descendant[];
-  noBorder?: boolean;
-  noShadow?: boolean;
-  width?: string;
-  maxWidth?: string;
-  minHeight?: string;
-  maxHeight?: string;
-  backgroundColor?: string;
-  padding?: string;
+  placeholder?: string;
   className?: string;
   style?: React.CSSProperties;
-  fontSize?: string;
-  overflow?: string;
 }
 
-// 읽기 전용 에디터 컴포넌트
 export const ReadOnlyEditor: React.FC<ReadOnlyEditorProps> = ({
   value,
-  noBorder = false,
-  noShadow = false,
-  width,
-  maxWidth,
-  minHeight,
-  maxHeight,
-  backgroundColor,
-  padding,
+  placeholder,
   className,
-  fontSize,
-  style,
-  overflow,
+  style
 }) => {
-  // 에디터 초기화
-  const editor = useMemo(() => {
-    return withShortcuts(withHistory(withReact(createEditor())));
-  }, []);
-
-  // 요소 렌더링 핸들러
-  const renderElement = React.useCallback((props: RenderElementProps) => <Element {...props} />, []);
-
-  // 텍스트 스타일 렌더링 핸들러
-  const renderLeaf = React.useCallback((props: RenderLeafProps) => <Leaf {...props} />, []);
+  const editor = useMemo(() => withReact(createEditor()), []);
 
   return (
-    <EditorContainer 
-      className={className} 
-      style={style}
-      noBorder={noBorder}
-      noShadow={noShadow}
-      width={width}
-      maxWidth={maxWidth}
-      backgroundColor={backgroundColor}
-    >
-      <Slate editor={editor} initialValue={value} onChange={() => {}}>
-        <EditableContainer 
-          padding={padding} 
-          minHeight={minHeight} 
-          maxHeight={maxHeight}
-          fontSize={fontSize}
-          overflow={overflow}
-        >
-          <Editable
-            renderElement={renderElement}
-            renderLeaf={renderLeaf}
-            readOnly={true}
-            data-testid="slate-readonly-editor"
-          />
-        </EditableContainer>
+    <div className={className} style={style}>
+      <Slate editor={editor} initialValue={value}>
+        <Editable
+          className="edit-on-slate-editor"
+          renderElement={renderElement}
+          renderLeaf={renderLeaf}
+          placeholder={placeholder}
+          readOnly
+        />
       </Slate>
-    </EditorContainer>
+    </div>
   );
 }; 

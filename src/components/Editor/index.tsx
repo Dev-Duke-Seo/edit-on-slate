@@ -8,6 +8,7 @@ import { Leaf } from './Leaf';
 import { Toolbar } from './Toolbar';
 import { withShortcuts } from '../../plugins/withShortcuts';
 import { CustomElement } from '../../utils/types';
+import { ShadowContainer } from './ShadowContainer';
 
 // 스타일 컴포넌트 정의
 const EditorContainer = styled.div`
@@ -75,21 +76,45 @@ export const Editor: React.FC<EditorProps> = ({
   const renderLeaf = useCallback((props: RenderLeafProps) => <Leaf {...props} />, []);
 
   return (
-    <EditorContainer className={className} style={style}>
-      <Slate editor={editor} initialValue={editorValue} onChange={handleChange}>
-        {!readOnly && <Toolbar editor={editor} />}
-        <EditableContainer>
-          <Editable
-            renderElement={renderElement}
-            renderLeaf={renderLeaf}
-            placeholder={placeholder}
-            readOnly={readOnly}
-            spellCheck
-            autoFocus
-            data-testid="slate-editor"
-          />
-        </EditableContainer>
-      </Slate>
-    </EditorContainer>
+    <ShadowContainer styles={`
+      .edit-on-slate-root {
+        --font-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        --font-code: "JetBrains Mono", "Fira Code", monospace;
+        --font-family-sans: "Nanum Gothic", "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", sans-serif;
+        --font-family-serif: "Noto Serif KR", Georgia, "Times New Roman", serif;
+        --font-family-mono: "JetBrains Mono", "D2Coding", Consolas, monospace;
+      }
+
+      .edit-on-slate-editor {
+        font-family: var(--font-primary);
+        line-height: 1.5;
+        padding: 1rem;
+      }
+
+      /* 기타 필요한 스타일들... */
+    `}>
+      <div className="edit-on-slate-root">
+        {readOnly ? (
+          <ReadOnlyEditor value={value} {...{ placeholder, readOnly, className, style }} />
+        ) : (
+          <Slate editor={editor} value={value} onChange={onChange}>
+            <Toolbar />
+            <Editable
+              className="edit-on-slate-editor"
+              renderElement={renderElement}
+              renderLeaf={renderLeaf}
+              placeholder="내용을 입력하세요..."
+              spellCheck
+              autoFocus
+              onKeyDown={event => {
+                // ... existing code ...
+              }}
+            />
+          </Slate>
+        )}
+      </div>
+    </ShadowContainer>
   );
-}; 
+};
+
+export default Editor; 
