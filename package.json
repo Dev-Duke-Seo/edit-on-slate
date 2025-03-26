@@ -15,7 +15,8 @@
 		"src/utils",
 		"src/plugins",
 		"src/lib",
-		"src/assets"
+		"src/assets",
+		"src/fonts.css"
 	],
 	"repository": {
 		"type": "git",
