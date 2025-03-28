@@ -10,21 +10,23 @@ export interface ReadOnlyEditorProps {
 	value: Descendant[];
 	placeholder?: string;
 	style?: React.CSSProperties;
-	height?: string;
+	containerStyle?: React.CSSProperties;
+	editorStyle?: React.CSSProperties;
 }
 
 export const ReadOnlyEditor: React.FC<ReadOnlyEditorProps> = ({
 	value,
 	style,
-	height,
+	containerStyle,
+	editorStyle,
 }) => {
 	const editor = useMemo(() => withReact(createEditor()), []);
 
 	return (
 		<div style={style}>
 			<Slate editor={editor} initialValue={value}>
-				<Container height={height}>
-					<StyledEditor>
+				<Container style={containerStyle}>
+					<StyledEditor style={editorStyle}>
 						<Editable
 							renderElement={renderElement}
 							renderLeaf={renderLeaf}

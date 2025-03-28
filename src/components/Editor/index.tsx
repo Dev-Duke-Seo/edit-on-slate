@@ -15,7 +15,7 @@ import { withShortcuts } from "../../plugins/withShortcuts";
 import { CustomElement } from "../../utils/types";
 import { ShadowContainer } from "./ShadowContainer";
 import { ReadOnlyEditor } from "./ReadOnlyEditor";
-import { Root, Container, StyledEditor } from "./styles";
+import { Container, StyledEditor } from "./styles";
 
 // 초기 에디터 값
 const initialValue: Descendant[] = [
@@ -32,7 +32,8 @@ export interface EditorProps {
 	placeholder?: string;
 	readOnly?: boolean;
 	className?: string;
-	style?: React.CSSProperties;
+	containerStyle?: React.CSSProperties;
+	editorStyle?: React.CSSProperties;
 	height?: string;
 }
 
@@ -42,9 +43,8 @@ export const Editor: React.FC<EditorProps> = ({
 	onChange,
 	placeholder = "내용을 입력하세요...",
 	readOnly = false,
-	className,
-	style,
-	height,
+	containerStyle,
+	editorStyle,
 }) => {
 	// 에디터 초기화
 	const editor = useMemo(() => {
@@ -67,14 +67,14 @@ export const Editor: React.FC<EditorProps> = ({
 		<ReadOnlyEditor
 			value={value}
 			placeholder={placeholder}
-			style={style}
-			height={height}
+			containerStyle={containerStyle}
+			editorStyle={editorStyle}
 		/>
 	) : (
 		<Slate editor={editor} initialValue={value} onChange={onChange}>
-			<Container height={height}>
+			<Container style={containerStyle}>
 				<Toolbar editor={editor} />
-				<StyledEditor>
+				<StyledEditor style={editorStyle}>
 					<Editable
 						renderElement={renderElement}
 						renderLeaf={renderLeaf}

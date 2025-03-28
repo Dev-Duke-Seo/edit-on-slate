@@ -19,8 +19,8 @@ export const Root = styled.div`
 export const Container = styled.div<{ height?: string }>`
   border: 1px solid #ddd;
   border-radius: 4px;
-  background: #fff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  background: #fff;
   height: ${props => props.height || '500px'};
   display: flex;
   flex-direction: column;

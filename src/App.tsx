@@ -209,7 +209,10 @@ function App() {
         <EditorWrapper>
           <SectionTitle>편집 가능한 에디터</SectionTitle>
           <SectionDescription>아래 에디터에서 내용을 자유롭게 편집해보세요.</SectionDescription>
-          <Editor value={editorValue} onChange={handleEditorChange} />
+          <Editor 
+            value={editorValue} 
+            onChange={handleEditorChange} 
+          />
           
           <OutputContainer>
             <OutputTitle>에디터 데이터 출력</OutputTitle>
@@ -228,11 +231,13 @@ function App() {
               <ExampleTitle>기본 스타일</ExampleTitle>
               <ReadOnlyEditor 
                 value={editorValue} 
-                style={{ 
+                containerStyle={{ 
                   border: '1px solid #ddd',
                   borderRadius: '4px',
-                  padding: '20px',
                   backgroundColor: '#fff'
+                }}
+                editorStyle={{
+                  padding: '20px'
                 }}
               />
             </ExampleCard>
@@ -241,7 +246,14 @@ function App() {
               <ExampleTitle>테두리 없음</ExampleTitle>
               <ReadOnlyEditor 
                 value={editorValue} 
-                style={{ padding: '20px' }}
+                containerStyle={{
+                  border: 'none',
+                  boxShadow: 'none'
+                }}
+                editorStyle={{
+                  border: 'none',
+                  boxShadow: 'none'
+                }}
               />
             </ExampleCard>
             
@@ -249,11 +261,13 @@ function App() {
               <ExampleTitle>배경색 변경</ExampleTitle>
               <ReadOnlyEditor 
                 value={editorValue} 
-                style={{ 
-                  backgroundColor: '#f5f5f5',
-                  padding: '15px',
+                containerStyle={{
                   border: '1px solid #ddd',
                   borderRadius: '4px'
+                }}
+                editorStyle={{ 
+                  backgroundColor: '#f5f5f5',
+                  padding: '15px'
                 }}
               />
             </ExampleCard>
@@ -262,11 +276,13 @@ function App() {
               <ExampleTitle>너비 조절</ExampleTitle>
               <ReadOnlyEditor 
                 value={editorValue} 
-                style={{ 
-                  width: '100%',
-                  minHeight: '150px',
+                containerStyle={{
                   border: '1px solid #ddd',
                   borderRadius: '4px',
+                  width: '70%'
+                }}
+                editorStyle={{ 
+                  minHeight: '150px',
                   padding: '20px'
                 }}
               />
