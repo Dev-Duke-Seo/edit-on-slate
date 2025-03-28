@@ -27,6 +27,7 @@
 		"url": "https://github.com/Dev-Duke-Seo/edit-on-slate/issues"
 	},
 	"dependencies": {
+		"@emotion/cache": "^11.14.0",
 		"@emotion/react": "^11.14.0",
 		"@emotion/styled": "^11.14.0",
 		"ajv": "^8.17.1",

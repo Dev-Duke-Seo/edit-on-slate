@@ -1,18 +1,32 @@
 // 개발 환경에서 사용할 코드
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
 import './index.css';
 import './fonts.css';
 import App from './App';
 
+// Shadow DOM을 위한 emotion cache 설정
+const createEmotionCache = (container: HTMLElement) => createCache({
+  key: 'edit-on-slate',
+  container,
+  // Shadow DOM 내부에서도 스타일이 적용되도록 설정
+  prepend: true,
+  stylisPlugins: []
+});
+
 // 개발 환경에서만 실행
 if (process.env.NODE_ENV === 'development') {
-  const root = ReactDOM.createRoot(
-    document.getElementById('root') as HTMLElement
-  );
+  const rootElement = document.getElementById('root') as HTMLElement;
+  const emotionCache = createEmotionCache(rootElement);
+
+  const root = ReactDOM.createRoot(rootElement);
   root.render(
     <React.StrictMode>
-      <App />
+      <CacheProvider value={emotionCache}>
+        <App />
+      </CacheProvider>
     </React.StrictMode>
   );
 }
@@ -44,3 +58,6 @@ export type {
 
 // 플러그인 export
 export { withShortcuts } from './plugins/withShortcuts';
+
+// emotion cache 생성 함수도 export
+export { createEmotionCache };

@@ -3,11 +3,16 @@ import { RenderElementProps } from 'slate-react';
 import styled from '@emotion/styled';
 import { CustomElement } from '../../utils/types';
 
+const baseStyles = (textAlign?: string) => `
+  text-align: ${textAlign || 'left'};
+  transition: text-align 0.2s ease;
+`;
+
 // 스타일 컴포넌트 정의
 const StyledParagraph = styled.p<{ textAlign?: string }>`
   margin: 0.5em 0;
   line-height: 1.6;
-  text-align: ${(props) => props.textAlign || 'left'};
+  ${props => baseStyles(props.textAlign)}
 `;
 
 const StyledH1 = styled.h1<{ textAlign?: string }>`
@@ -15,7 +20,7 @@ const StyledH1 = styled.h1<{ textAlign?: string }>`
   margin-top: 1em;
   margin-bottom: 0.5em;
   font-weight: bold;
-  text-align: ${(props) => props.textAlign || 'left'};
+  ${props => baseStyles(props.textAlign)}
 `;
 
 const StyledH2 = styled.h2<{ textAlign?: string }>`
@@ -23,7 +28,7 @@ const StyledH2 = styled.h2<{ textAlign?: string }>`
   margin-top: 0.8em;
   margin-bottom: 0.4em;
   font-weight: bold;
-  text-align: ${(props) => props.textAlign || 'left'};
+  ${props => baseStyles(props.textAlign)}
 `;
 
 const StyledH3 = styled.h3<{ textAlign?: string }>`
@@ -31,7 +36,7 @@ const StyledH3 = styled.h3<{ textAlign?: string }>`
   margin-top: 0.6em;
   margin-bottom: 0.3em;
   font-weight: bold;
-  text-align: ${(props) => props.textAlign || 'left'};
+  ${props => baseStyles(props.textAlign)}
 `;
 
 const StyledBlockquote = styled.blockquote<{ textAlign?: string }>`
@@ -41,24 +46,24 @@ const StyledBlockquote = styled.blockquote<{ textAlign?: string }>`
   padding-left: 10px;
   color: #666;
   font-style: italic;
-  text-align: ${(props) => props.textAlign || 'left'};
+  ${props => baseStyles(props.textAlign)}
 `;
 
 const StyledUl = styled.ul<{ textAlign?: string }>`
   margin: 0.5em 0;
   padding-left: 1.5em;
-  text-align: ${(props) => props.textAlign || 'left'};
+  ${props => baseStyles(props.textAlign)}
 `;
 
 const StyledOl = styled.ol<{ textAlign?: string }>`
   margin: 0.5em 0;
   padding-left: 1.5em;
-  text-align: ${(props) => props.textAlign || 'left'};
+  ${props => baseStyles(props.textAlign)}
 `;
 
 const StyledLi = styled.li<{ textAlign?: string }>`
   margin: 0.2em 0;
-  text-align: ${(props) => props.textAlign || 'left'};
+  ${props => baseStyles(props.textAlign)}
 `;
 
 // 요소 렌더링 컴포넌트

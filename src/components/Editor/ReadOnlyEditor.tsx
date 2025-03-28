@@ -1,36 +1,38 @@
-import React, { useMemo } from 'react';
-import { createEditor } from 'slate';
-import { withReact, Slate, Editable } from 'slate-react';
-import { renderElement } from './Element';
-import { renderLeaf } from './Leaf';
-import { Descendant } from 'slate';
+import React, { useMemo } from "react";
+import { createEditor } from "slate";
+import { withReact, Slate, Editable } from "slate-react";
+import { renderElement } from "./Element";
+import { renderLeaf } from "./Leaf";
+import { Descendant } from "slate";
+import { Container, StyledEditor } from "./styles";
 
-interface ReadOnlyEditorProps {
-  value: Descendant[];
-  placeholder?: string;
-  className?: string;
-  style?: React.CSSProperties;
+export interface ReadOnlyEditorProps {
+	value: Descendant[];
+	placeholder?: string;
+	style?: React.CSSProperties;
+	height?: string;
 }
 
 export const ReadOnlyEditor: React.FC<ReadOnlyEditorProps> = ({
-  value,
-  placeholder,
-  className,
-  style
+	value,
+	style,
+	height,
 }) => {
-  const editor = useMemo(() => withReact(createEditor()), []);
+	const editor = useMemo(() => withReact(createEditor()), []);
 
-  return (
-    <div className={className} style={style}>
-      <Slate editor={editor} initialValue={value}>
-        <Editable
-          className="edit-on-slate-editor"
-          renderElement={renderElement}
-          renderLeaf={renderLeaf}
-          placeholder={placeholder}
-          readOnly
-        />
-      </Slate>
-    </div>
-  );
-}; 
+	return (
+		<div style={style}>
+			<Slate editor={editor} initialValue={value}>
+				<Container height={height}>
+					<StyledEditor>
+						<Editable
+							renderElement={renderElement}
+							renderLeaf={renderLeaf}
+							readOnly
+						/>
+					</StyledEditor>
+				</Container>
+			</Slate>
+		</div>
+	);
+};

@@ -1,44 +1,55 @@
 import React, { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import styled from '@emotion/styled';
-
-const ShadowRoot = styled.div`
-  /* 컨테이너 스타일 */
-  width: 100%;
-  height: 100%;
-`;
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
 
 interface ShadowContainerProps {
   children: React.ReactNode;
-  styles?: string;
 }
 
-export const ShadowContainer: React.FC<ShadowContainerProps> = ({ children, styles = '' }) => {
+export const ShadowContainer: React.FC<ShadowContainerProps> = ({ children }) => {
   const hostRef = useRef<HTMLDivElement>(null);
   const shadowRootRef = useRef<ShadowRoot | null>(null);
+  const emotionCacheRef = useRef<ReturnType<typeof createCache> | null>(null);
+  const [, forceUpdate] = React.useState({});
 
   useEffect(() => {
     if (hostRef.current && !shadowRootRef.current) {
-      // Shadow DOM 생성
+      // Shadow Root 생성
       shadowRootRef.current = hostRef.current.attachShadow({ mode: 'open' });
 
-      // 스타일 추가
-      const styleSheet = new CSSStyleSheet();
-      styleSheet.replaceSync(styles);
-      shadowRootRef.current.adoptedStyleSheets = [styleSheet];
+      // container div 생성 및 추가
+      const container = document.createElement('div');
+      shadowRootRef.current.appendChild(container);
 
-      // 폰트 스타일을 Shadow DOM 내부로 복사
+      // emotion cache 생성
+      emotionCacheRef.current = createCache({
+        key: 'edit-on-slate',
+        container: shadowRootRef.current,
+        prepend: true,
+        stylisPlugins: []
+      });
+
+      // 폰트 스타일 복사
       const fontLinks = document.querySelectorAll('link[rel="stylesheet"][href*="fonts.googleapis.com"]');
       fontLinks.forEach(link => {
         const clonedLink = link.cloneNode(true) as HTMLLinkElement;
         shadowRootRef.current?.appendChild(clonedLink);
       });
+
+      // 강제 리렌더링을 위한 상태 업데이트
+      forceUpdate({});
     }
-  }, [styles]);
+  }, []);
 
   return (
-    <ShadowRoot ref={hostRef}>
-      {shadowRootRef.current && createPortal(children, shadowRootRef.current)}
-    </ShadowRoot>
+    <div ref={hostRef}>
+      {shadowRootRef.current && emotionCacheRef.current && createPortal(
+        <CacheProvider value={emotionCacheRef.current}>
+          {children}
+        </CacheProvider>,
+        shadowRootRef.current
+      )}
+    </div>
   );
 }; 

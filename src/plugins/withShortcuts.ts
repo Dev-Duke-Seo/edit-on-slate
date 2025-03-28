@@ -68,6 +68,10 @@ export const withShortcuts = (editor: CustomEditor) => {
   // 백스페이스 처리
   editor.deleteBackward = (...args) => {
     const { selection } = editor;
+    console.log('deleteBackward called', { 
+      selection,
+      args 
+    });
 
     if (selection && Range.isCollapsed(selection)) {
       const match = Editor.above(editor, {

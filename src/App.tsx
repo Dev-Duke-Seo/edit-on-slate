@@ -226,20 +226,35 @@ function App() {
           <ReadOnlyExamples>
             <ExampleCard>
               <ExampleTitle>기본 스타일</ExampleTitle>
-              <ReadOnlyEditor value={editorValue} />
+              <ReadOnlyEditor 
+                value={editorValue} 
+                style={{ 
+                  border: '1px solid #ddd',
+                  borderRadius: '4px',
+                  padding: '20px',
+                  backgroundColor: '#fff'
+                }}
+              />
             </ExampleCard>
             
             <ExampleCard>
               <ExampleTitle>테두리 없음</ExampleTitle>
-              <ReadOnlyEditor value={editorValue} noBorder={true} noShadow={true} />
+              <ReadOnlyEditor 
+                value={editorValue} 
+                style={{ padding: '20px' }}
+              />
             </ExampleCard>
             
             <ExampleCard>
               <ExampleTitle>배경색 변경</ExampleTitle>
               <ReadOnlyEditor 
                 value={editorValue} 
-                backgroundColor="#f5f5f5" 
-                padding="15px"
+                style={{ 
+                  backgroundColor: '#f5f5f5',
+                  padding: '15px',
+                  border: '1px solid #ddd',
+                  borderRadius: '4px'
+                }}
               />
             </ExampleCard>
             
@@ -247,9 +262,13 @@ function App() {
               <ExampleTitle>너비 조절</ExampleTitle>
               <ReadOnlyEditor 
                 value={editorValue} 
-                width="100%" 
-                maxWidth="100%" 
-                minHeight="150px"
+                style={{ 
+                  width: '100%',
+                  minHeight: '150px',
+                  border: '1px solid #ddd',
+                  borderRadius: '4px',
+                  padding: '20px'
+                }}
               />
             </ExampleCard>
           </ReadOnlyExamples>
