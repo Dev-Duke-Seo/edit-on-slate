@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback } from "react";
+import React, { useMemo, useCallback, useEffect, useState } from "react";
 import { createEditor, Descendant } from "slate";
 import {
 	Slate,
@@ -16,6 +16,7 @@ import { CustomElement } from "../../utils/types";
 import { ShadowContainer } from "./ShadowContainer";
 import { ReadOnlyEditor } from "./ReadOnlyEditor";
 import { Container, StyledEditor } from "./styles";
+import { loadDefaultFonts, waitForFont } from "../../utils/fontLoader";
 
 // 초기 에디터 값
 const initialValue: Descendant[] = [
@@ -31,7 +32,6 @@ export interface EditorProps {
 	onChange?: (value: Descendant[]) => void;
 	placeholder?: string;
 	readOnly?: boolean;
-	className?: string;
 	containerStyle?: React.CSSProperties;
 	editorStyle?: React.CSSProperties;
 	height?: string;
@@ -46,6 +46,24 @@ export const Editor: React.FC<EditorProps> = ({
 	containerStyle,
 	editorStyle,
 }) => {
+	const [fontsLoaded, setFontsLoaded] = useState(false);
+	
+	// 폰트 로딩 처리
+	useEffect(() => {
+		// 기본 폰트 로드
+		loadDefaultFonts();
+		
+		// 주요 폰트들이 로드될 때까지 대기
+		Promise.all([
+			waitForFont('Nanum Gothic'),
+			waitForFont('Pretendard'),
+			waitForFont('Inter')
+		]).then(() => {
+			setFontsLoaded(true);
+			document.documentElement.classList.add('fonts-loaded');
+		});
+	}, []);
+
 	// 에디터 초기화
 	const editor = useMemo(() => {
 		return withShortcuts(withHistory(withReact(createEditor())));
@@ -87,7 +105,11 @@ export const Editor: React.FC<EditorProps> = ({
 		</Slate>
 	);
 
-	return <ShadowContainer>{content}</ShadowContainer>;
+	return <ShadowContainer>
+		<div className={fontsLoaded ? 'fonts-loaded' : ''}>
+			{content}
+		</div>
+	</ShadowContainer>;
 };
 
 export default Editor;
